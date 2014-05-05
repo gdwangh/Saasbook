@@ -12,15 +12,14 @@ end
 def max_2_sum(arg)
 	if tmp=Array.try_convert(arg)
 		# the arg is array
-		if arg.length==0
+		case arg.length
+		when 0 
 			return 0
-		else
-		  if arg.length==1
+		when 1  
 			return arg[0]
-	          else
+	        else
 			arg.sort!
 			return arg[-1] + arg[-2]
-		  end
                 end
 	else
 		return 0

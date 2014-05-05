@@ -1,46 +1,42 @@
 def sum(arg)
+	sum=0
 	if tmp=Array.try_convert(arg)
 		# The arg is array
-		sum=0
 		arg.each { |item|  sum+=item }
-		return sum
-	else
-		return 0
 	end
+
+	sum
 end
 
 def max_2_sum(arg)
+	sum=0
+
 	if tmp=Array.try_convert(arg)
 		# the arg is array
 		case arg.length
-		when 0 
-			return 0
-		when 1  
-			return arg[0]
+		when 0
+			sum=0
+		when 1
+			sum=arg[0]
 	        else
 			arg.sort!
-			return arg[-1] + arg[-2]
+			sum=arg[-1] + arg[-2]
                 end
-	else
-		return 0
 	end
+
+	sum
 end
 
 def sum_to_n?(arr, n)
+   sum_n=FALSE
    if (arr.length==0 && n==0)
-	return TRUE
+	sum_n=TRUE
    else
 	arr.combination(2) { |x,y| if x+y==n 
-					return TRUE
+				     sum_n=TRUE; 
 				   end
-			    }
+			   }
    end
  
-   return FALSE
+   sum_n
 end
-
-
-
-
-
-	

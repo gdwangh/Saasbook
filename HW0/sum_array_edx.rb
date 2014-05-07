@@ -36,20 +36,16 @@ end
 
 # takes an array of integers and an additional integer, n, as arguments 
 # and returns true if any two distinct elements in the array of integers sum to n. 
-# An empty array && n=0 should return true. 
+# An empty array or single element array should both return false. 
 
 def sum_to_n?(arr, n)
    sum_n=FALSE
    
-   if (arr.empty? && n==0)
-   	    sum_n=TRUE
-    else
-	    arr.combination(2) { |x,y| if x+y == n
-						sum_n=TRUE
-						break
-					    end
-				   }
-   end
- 
+   arr.combination(2) { |x,y| if x+y == n
+            						sum_n=TRUE
+            						break
+					           end
+				    }
    sum_n
 end
+

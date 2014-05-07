@@ -10,15 +10,15 @@ end
 
 def starts_with_consonant?(s)
 
-	(s[/\A[a-z&&[^aeiou]]/i])? TRUE : FALSE
+	s[/\A[a-z&&[^aeiou]]/i] ? TRUE : FALSE
 
 end
 
+
 #takes a string and returns true if the string represents a binary number that is a multiple of 4. 
 # NOTE: be sure it returns false if the string is not a valid binary number!
-# only 0 is invalid and 01xxx is valid
 
 def binary_multiple_of_4?(s)
-	(s[/\A[01]*1[01]*0{2}\Z/])? TRUE : FALSE
+ 	s[/\A[01]+\Z/]  && (s.to_i(2)%4==0) ? TRUE : FALSE
 end
 

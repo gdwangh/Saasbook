@@ -1,0 +1,72 @@
+作业1-1：趣味字符串
+Specs: spec/fun_with_strings_spec.rb
+A部分——回文
+B部分——单词统计
+C部分——易位词
+
+******************************************************
+作业1-2：用基本的面向对象编程编写Dessert
+Specs: spec/dessert_spec.rb
+
+    1. 创建一个类Dessert（甜点），并为甜点的名字和卡路里编写getter和setter。类的构造函数应该接受表示名字和卡路里的变量。
+    2. 定义实例方法healthy?，它返回true当且仅当一个甜点的热量小于200卡路里，和delicious?， 它对所有的甜点都返回true。
+    3. 创建一个类JellyBean（果冻豆），继承自Dessert。它的构造函数应该只接受一个表示果冻豆口味的参数。一个新创建的果冻豆应该有5卡路里，它的名字应该是果冻豆口味加上"jelly bean"，例如"strawberry jelly bean"。
+    4. 给果冻豆口味加一个getter和setter。
+    5. 修改delicious?，使得当果冻豆口味是licorice时返回false，但对于所有其它口味都返回true。方法delicious?的行为对于非果冻豆以外的甜食仍然保持不变。
+
+******************************************************
+
+ 作业1-3：石头剪刀布
+
+Specs: spec/rock_paper_scissors_spec.rb
+
+在石头剪刀布的游戏中，每位玩家选择出石头（R），剪刀（S）和布（P）。规则是：石头胜过剪刀，剪刀胜过布，布胜过石头。
+
+在一轮石头剪刀布中，每位玩家的名字和策略都被表示成由两个元素组成的数组
+
+[ ["Armando", "P"], ["Dave", "S"] ] # Dave赢，因为S > P
+
+
+1. 游戏胜者：
+
+创建一个类RockPaperScissors，它拥有一个类方法winner，该方法接受像上面那样的两元素数组作为参数，并返回表示胜者的数组：
+
+RockPaperScissors.winner(['Armando','P'], ['Dave','S'])  # => ['Dave','S']
+
+如果一位玩家的策略不是"R"，"P"，"S"（大小写敏感）其中的一个，这个方法应该触发 RockPaperScissors::NoSuchStrategyError 异常，并且返回信息："Strategy must be one of R,P,S"。
+
+如果两位玩家使用了相同的策略，那么第一位玩家获胜。
+
+2. 锦标赛：
+
+一场石头剪子布锦标赛被表示为一个的游戏序列，序列的每一个元素自己也可以看成一场锦标赛。
+
+[
+    [
+    [ ["Armando", "P"], ["Dave", "S"] ],
+    [ ["Richard", "R"],  ["Michael", "S"] ]
+    ],
+    [
+    [ ["Allen", "S"], ["Omer", "P"] ],
+    [ ["David E.", "R"], ["Richard X.", "P"] ]
+    ]
+]
+
+在上面的锦标赛中，Armando总是出P，Dave总是出S。这个锦标赛的结果如下：
+
+在这种情形下，Dave将打败Armando（S>P）并且Richard将打败Michael（R>S），所以Dave和Richard将进行比赛（Richard 赢因为R>S）；同样地，Allen会打败Omer，Richard X.会打败David E.，并且Allen和Richard X.将进行比赛（Allen赢因为S>P）；最终Richard将会打败Allen因为R>S。也就是说，锦标赛成对地进行直到只有一名胜者。
+
+编写一个方法`RockPaperScissors.tournament_winner'， 它接受表示锦标赛的一个数组并返回胜者（以上面例子为例，它应该返回['Richard', 'R']）。你可以假定这个数组是合法的（也就是说，有2^n个玩家，每位玩家每一轮只参加一场比赛）。
+
+提示：把这个问题表示为一个递归问题，并使用第1部分作为基础情况。
+
+
+***************************************************************
+
+ 作业1-4：Ruby元编程
+
+Specs: spec/attr_accessor_with_history_spec.rb
+
+在课上我们已经看到过attr_accessor是如何使用元编程在运行时为对象的属性创建getter和setter的了。
+
+定义一个方法 attr_accessor_with_history，它提供与attr_accessor相同的功能，但是还能追踪这个属性曾经有过的值：
